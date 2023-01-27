@@ -30,9 +30,8 @@ const DynamicPix = (): JSX.Element => {
                 city,
                 transactionId: identifier,
                 message: message,
+                value
             })
-
-            if (value > 0) Object.assign(qrCodePix, {value})
 
             const rawPixStr = qrCodePix.payload()
             const qrCodeBase64 = await qrCodePix.base64()
@@ -51,8 +50,7 @@ const DynamicPix = (): JSX.Element => {
     const onChangeValue = (value: string): void => {
         if (!value) setValue(0)
 
-        const valueNumber = Number(value.replace(/[^0-9]/g, ''));
-        if (valueNumber > 0) setValue(valueNumber);
+        if(value > 0) setValue(parseFloat(value))
     }
 
     return (
