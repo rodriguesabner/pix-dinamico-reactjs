@@ -51,7 +51,7 @@ const DynamicPix = (): JSX.Element => {
         const sanitizedValue = parseInt(value, 10)
         if (!sanitizedValue) setValue(0)
 
-        if(sanitizedValue > 0) setValue(parseFloat(sanitizedValue))
+        if(sanitizedValue > 0) setValue(sanitizedValue)
     }
 
     return (
