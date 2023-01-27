@@ -41,3 +41,51 @@
 .read-the-docs {
     color: #888;
 }
+
+.home__wrapper {
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.home__wrapper h1 {
+    font-size: 24px;
+    margin-bottom: 5px;
+}
+
+.home__wrapper small {
+    line-height: 1;
+    margin-bottom: 5px;
+}
+
+.home__qrcode_wrapper {
+    margin-top: 20px;
+}
+
+.home__qrcode_wrapper p {
+    max-width: 480px;
+    margin: 0 auto;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    margin-top: 20px;
+}
+
+form input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #fff;
+    transition: border-color 0.25s;
+    margin: 5px;
+}

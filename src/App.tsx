@@ -1,85 +1,43 @@
-import {useEffect, useState} from 'react'
-import {QrCodePix} from "qrcode-pix";
+import {useState} from 'react'
 import './App.css'
+import Home from "./pages/Home";
+import DynamicPix from "./pages/DynamicPix";
 
 function App(): JSX.Element {
-    const [qrCode, setQrCode] = useState<string>('');
-    const [rawPix, setRawPix] = useState<string>('');
+    const [step, setStep] = useState(0);
 
-    useEffect(() => {
-        async function generateDynamicPix() {
-            /*
-                version: '01' //versão do pix (não altere)
-                key: chave pix
-                name: seu nome/empresa
-                city: sua cidade
-                transactionId: é o identificador que aparecerá no momento do pix (max: 25 caracteres)
-                message: mensagem que aparecerá no momento do pix (opcional)
-                value: valor que você quer cobrar (opcional)
-            */
-            const qrCodePix = QrCodePix({
-                version: '01',
-                key: 'a23b8801-3c9c-4a1a-8a03-a75dc62d8365',
-                name: 'Abner Rodrigues',
-                city: 'São Paulo',
-                transactionId: 'rodriguesabner_',
-                message: 'Recebidos da semana??? 😂',
-                value: 1500.00,
-            })
-
-            const rawPixStr = qrCodePix.payload()
-            const qrCodeBase64 = await qrCodePix.base64()
-
-            setRawPix(rawPixStr)
-            setQrCode(qrCodeBase64)
+    const renderStep = () => {
+        switch (step) {
+            case 0:
+                return <Home />
+            case 1:
+                return <DynamicPix />
+            default:
+                return <Home />
         }
+    }
 
-        void generateDynamicPix();
-    }, [])
+    const handleChangeStep = (step: number): void => {
+        setStep(step)
+    }
 
     return (
         <div className="App">
-            <div style={{
-                maxWidth: '400px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                margin: '0 auto',
-            }}>
-                <h1
-                    style={{
-                        fontSize: '24px',
-                        marginBottom: '5px'
-                    }}
+            <header>
+                <button
+                    style={{marginRight: 10}}
+                    onClick={() => handleChangeStep(0)}
                 >
-                    Pague o que deve com PIX
-                </h1>
-                <small
-                    style={{
-                        lineHeight: '1',
-                        marginBottom: '5px'
-                    }}
-                >
-                    Sr. Caloteiro, para você pagar o que deve, basta escanear o QR Code abaixo ou copiar o código e
-                    enviar para o meu PIX.
-                </small>
-            </div>
+                    Home
+                </button>
 
-            <div
-                style={{marginTop: 20}}
-            >
-                <img src={qrCode} alt={'QR Code PIX'}/>
-                <p
-                    style={{
-                        maxWidth: '480px',
-                        margin: '0 auto',
-                        whiteSpace: 'nowrap',
-                        overflow: 'auto'
-                    }}
-                >
-                    {rawPix}
-                </p>
+                <button onClick={() => handleChangeStep(1)}>
+                    Dynamic Pix
+                </button>
+            </header>
+
+            <div>
+                {renderStep()}
             </div>
         </div>
     )
