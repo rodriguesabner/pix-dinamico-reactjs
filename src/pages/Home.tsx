@@ -36,6 +36,11 @@ const Home = (): JSX.Element => {
         void generateDynamicPix();
     }, [])
 
+    const copyCodeClipboard = (): void => {
+        void navigator.clipboard.writeText(rawPix)
+        alert('Código copiado com sucesso!')
+    }
+
     return (
         <div>
             <div className={'home__wrapper'}>
@@ -53,6 +58,10 @@ const Home = (): JSX.Element => {
                 <p>
                     {rawPix}
                 </p>
+
+                <button onClick={() => copyCodeClipboard()}>
+                    Copiar código
+                </button>
             </div>
         </div>
     )

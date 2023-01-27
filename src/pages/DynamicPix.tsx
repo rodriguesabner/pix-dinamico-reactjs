@@ -54,6 +54,11 @@ const DynamicPix = (): JSX.Element => {
         if(sanitizedValue > 0) setValue(sanitizedValue)
     }
 
+    const copyCodeClipboard = (): void => {
+        void navigator.clipboard.writeText(rawPix)
+        alert('Código copiado com sucesso!')
+    }
+
     return (
         <div>
             <div className={'home__wrapper'}>
@@ -75,6 +80,10 @@ const DynamicPix = (): JSX.Element => {
                 <p>
                     {rawPix}
                 </p>
+
+                <button onClick={() => copyCodeClipboard()}>
+                    Copiar código
+                </button>
             </div>
 
             <form>
