@@ -67,7 +67,12 @@ const DynamicPix = (): JSX.Element => {
             </div>
 
             <div className={'home__qrcode_wrapper'}>
-                <img src={qrCode} alt={'QR Code PIX'}/>
+                <img
+                    src={qrCode}
+                    alt={'QR Code PIX'}
+                    width={250}
+                    height={250}
+                />
                 <p>
                     {rawPix}
                 </p>
